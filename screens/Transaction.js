@@ -27,30 +27,12 @@ export default class TransactionScreen extends Component {
     });
   };
 
-  handleBarCodeScanned = async ({ type, data }) => {
-    this.setState({
-      scannedData: data,
-      domState: "normal",
-      scanned: true
-    });
-  };
-
   render() {
-    const { domState, hasCameraPermissions, scannedData, scanned } = this.state;
-    if (domState === "scanner") {
-      return (
-        <BarCodeScanner
-          onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-        />
-      );
-    }
+    
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
-          {hasCameraPermissions ? scannedData : "Request for Camera Permission"}
-        </Text>
+        
         <TouchableOpacity
           style={[styles.button, { marginTop: 25 }]}
           onPress={() => this.getCameraPermissions("scanner")}
@@ -73,16 +55,5 @@ const styles = StyleSheet.create({
     color: "#ffff",
     fontSize: 15
   },
-  button: {
-    width: "43%",
-    height: 55,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F48D20",
-    borderRadius: 15
-  },
-  buttonText: {
-    fontSize: 24,
-    color: "#FFFFFF"
-  }
+ 
 });
